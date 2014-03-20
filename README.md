@@ -1,6 +1,8 @@
 Migration files
 ===============
 At the moment, stuff runs on Postgresql. About 2 lines of code would need be changed to support more DB-s. Pull requests.
+
+
 Place your migration in a separate folder, for example, db/migrate.
 Make sure the migrations have an .sql ending.
 Migrations are sorted using their file name and then applied in the sorted order.
