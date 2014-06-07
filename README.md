@@ -29,9 +29,6 @@ if err != nil {
 }
 ```
 
-Migrations are applied in a transactions. If any of these fail, the transaction is
-rolled back. 
-
-Also note that migration file names are saved into a table, and the table is used
+Note that migration file names are saved into a table, and the table is used
 later on to detect which migrations have already been applied. In other words,
 **don't rename your migration files once they've been applied to your DB**.
