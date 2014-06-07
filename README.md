@@ -1,5 +1,10 @@
 [![Build Status](https://travis-ci.org/tanel/dbmigrate.svg?branch=master)](https://travis-ci.org/tanel/dbmigrate)
 
+Supported databases
+===================
+* PostgreSQL
+* Cassandra
+
 How to use
 ==========
 Place your migrations in a separate folder, for example, db/migrate.
