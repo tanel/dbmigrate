@@ -1,14 +1,12 @@
 
-Migration files
-===============
+How to use
+==========
 Place your migration in a separate folder, for example, db/migrate.
 Make sure the migrations have an .sql ending.
 Migrations are sorted using their file name and then applied in the sorted order.
 Since sorting is important, name your migrations accordingly. For example,
 add a timestamp before migration name. Or use any other ordering scheme you'll like.
 
-Run migrations
-==============
 In your app code, import dbmigrate package:
 ```golang
 import (
