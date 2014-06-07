@@ -35,7 +35,12 @@ func (cassandra *CassandraDatabase) CreateMigrationsTable() error {
 			primary key (name)
 		);
 	`).Exec()
-	return err
+	if err != nil {
+		if !strings.Contains(err.Error(), "Cannot add already existing column family") {
+			return err
+		}
+	}
+	return nil
 }
 
 func (cassandra *CassandraDatabase) HasMigrated(filename string) (bool, error) {
