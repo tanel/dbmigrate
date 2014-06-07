@@ -138,7 +138,8 @@ func ApplyMigrations(database Database, migrationsFolder string) error {
 	// Run migrations
 	sqlFiles := make([]string, 0)
 	for _, f := range dir {
-		if filepath.Ext(f.Name()) == ".sql" {
+		ext := filepath.Ext(f.Name())
+		if ".sql" == ext || ".cql" == ext {
 			sqlFiles = append(sqlFiles, f.Name())
 		}
 	}
