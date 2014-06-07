@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/tanel/dbmigrate.svg?branch=master)](https://travis-ci.org/tanel/dbmigrate)
 
 How to use
 ==========
