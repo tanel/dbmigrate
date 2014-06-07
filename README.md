@@ -53,14 +53,14 @@ Use with Cassandra
 After app startup, open a session and run migrations:
 
 ```golang
-	session, err := cluster.CreateSession()
-	if err != nil {
-		return err
-	}
-	defer session.Close()
+session, err := cluster.CreateSession()
+if err != nil {
+	return err
+}
+defer session.Close()
 
-	cassandraMigrations := dbmigrate.NewCassandraDatabase(session, session)
-	if err := dbmigrate.ApplyMigrations(cassandraMigrations, filepath.Join("db", "migrate")); err != nil {
-	  return err
-	}
+cassandraMigrations := dbmigrate.NewCassandraDatabase(session, session)
+if err := dbmigrate.ApplyMigrations(cassandraMigrations, filepath.Join("db", "migrate")); err != nil {
+  return err
+}
 ```
