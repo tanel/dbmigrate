@@ -58,15 +58,13 @@ func (cassandra *CassandraDatabase) HasMigrated(filename string) (bool, error) {
 }
 
 func (cassandra *CassandraDatabase) Migrate(filename string, migration string) error {
-	/*
-		_, err := postgres.database.Exec(migration)
-		if err != nil {
-			return err
-		}
-		_, err = postgres.database.Exec("insert into migrations(name, created_at) values($1, current_timestamp)", filename)
+	if err := cassandra.writerSession.Query(migration).Exec(); err != nil {
 		return err
-	*/
-	return nil
+	}
+	return cassandra.writerSession.Query(`
+		INSERT INTO migrations(name, created_at)
+		VALUES(?, NOW())
+	`, filename).Exec()
 }
 
 func NewCassandraDatabase(readerSession *gocql.Session, writerSession *gocql.Session) *CassandraDatabase {
