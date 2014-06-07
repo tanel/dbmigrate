@@ -29,10 +29,10 @@ type CassandraDatabase struct {
 
 func (cassandra *CassandraDatabase) CreateMigrationsTable() error {
 	err := cassandra.writerSession.Query(`
-		create table migrations (
-			name text,
-			created_at timeuuid,
-			primary key (name)
+		CREATE TABLE migrations (
+			name TEXT,
+			created_at TIMEUUID,
+			PRIMARY KEY (name)
 		);
 	`).Exec()
 	if err != nil {
@@ -45,12 +45,15 @@ func (cassandra *CassandraDatabase) CreateMigrationsTable() error {
 
 func (cassandra *CassandraDatabase) HasMigrated(filename string) (bool, error) {
 	var count int
-	/*
-		err := postgres.database.QueryRow("select count(1) from migrations where name = $1", filename).Scan(&count)
-		if err != nil {
-			return false, err
-		}
-	*/
+	iter := cassandra.readerSession.Query(`
+		SELECT COUNT(*) FROM migrations WHERE name = ?
+	`, filename).Iter()
+	if !iter.Scan(&count) {
+		return false, iter.Close()
+	}
+	if err := iter.Close(); err != nil {
+		return false, err
+	}
 	return count > 0, nil
 }
 
