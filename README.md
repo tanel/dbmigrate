@@ -45,3 +45,10 @@ if err := dbmigrate.Run(db, filepath.Join("db", "migrate")); err != nil {
   log.Fatal(err)
 }
 ```
+
+Use with Cassandra
+------------------
+**Make sure the migrations have an .cql ending.**
+
+
+
