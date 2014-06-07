@@ -2,17 +2,18 @@
 How to use
 ==========
 Place your migrations in a separate folder, for example, db/migrate.
-Make sure the migrations have an .sql ending.
-Migrations are sorted using their file name and then applied in the sorted order.
+**Make sure the migrations have an .sql ending.**
+**Migrations are sorted using their file name and then applied in the sorted order.**
 Since sorting is important, name your migrations accordingly. For example,
 add a timestamp before migration name. Or use any other ordering scheme you'll like.
 
 In your app code, import dbmigrate package:
 ```golang
 import (
-  "github.com/tanel/dbmigrate"
   "log"
   "path/filepath"
+
+  "github.com/tanel/dbmigrate"
 )
 ```
 
@@ -21,8 +22,7 @@ run the migrations. Assuming you have a variable called **db** that points to sq
 and the migrations are located in **db/migrate**, execute the following code:
 
 ```golang
-err := dbmigrate.Run(db, filepath.Join("db", "migrate")
-if err != nil {
+if err := dbmigrate.Run(db, filepath.Join("db", "migrate")); err != nil {
   log.Fatal(err)
 }
 ```
