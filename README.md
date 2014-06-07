@@ -1,4 +1,3 @@
-At the moment, stuff runs on Postgresql. About 2 lines of code would need be changed to support more DB-s. Pull requests ;)
 
 Migration files
 ===============
