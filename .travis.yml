@@ -1,0 +1,9 @@
+language: go
+go:
+ - release
+
+before_script:
+- go get
+
+script:
+ - go test -v
