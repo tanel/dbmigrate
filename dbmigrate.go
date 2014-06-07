@@ -28,19 +28,14 @@ type CassandraDatabase struct {
 }
 
 func (cassandra *CassandraDatabase) CreateMigrationsTable() error {
-	/*
-		_, err := postgres.database.Exec("create table if not exists migrations(id serial, name text not null, created_at timestamp with time zone not null)")
-		if err != nil {
-			return err
-		}
-		_, err = postgres.database.Exec("create unique index idx_migrations_name on migrations(name)")
-		if err != nil {
-			if !strings.Contains(err.Error(), "already exists") {
-				return err
-			}
-		}
-	*/
-	return nil
+	err := cassandra.writerSession.Query(`
+		create table migrations (
+			name text,
+			created_at timeuuid,
+			primary key (name)
+		);
+	`).Exec()
+	return err
 }
 
 func (cassandra *CassandraDatabase) HasMigrated(filename string) (bool, error) {
@@ -80,7 +75,9 @@ type PostgresDatabase struct {
 }
 
 func (postgres *PostgresDatabase) CreateMigrationsTable() error {
-	_, err := postgres.database.Exec("create table if not exists migrations(id serial, name text not null, created_at timestamp with time zone not null)")
+	_, err := postgres.database.Exec(`
+		create table if not exists migrations(id serial, name text not null, created_at timestamp with time zone not null)
+	`)
 	if err != nil {
 		return err
 	}
