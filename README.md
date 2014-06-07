@@ -1,7 +1,7 @@
 
 How to use
 ==========
-Place your migration in a separate folder, for example, db/migrate.
+Place your migrations in a separate folder, for example, db/migrate.
 Make sure the migrations have an .sql ending.
 Migrations are sorted using their file name and then applied in the sorted order.
 Since sorting is important, name your migrations accordingly. For example,
