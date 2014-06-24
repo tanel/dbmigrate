@@ -160,7 +160,8 @@ func ApplyMigrations(database Database, migrationsFolder string) error {
 		if migrated {
 			continue
 		}
-		b, err := ioutil.ReadFile(filepath.Join(migrationsFolder, filename))
+		fullpath := filepath.Join(migrationsFolder, filename)
+		b, err := ioutil.ReadFile(fullpath)
 		if err != nil {
 			return err
 		}
@@ -172,7 +173,7 @@ func ApplyMigrations(database Database, migrationsFolder string) error {
 		if err != nil {
 			return err
 		}
-		fmt.Println("Migrated", filename)
+		fmt.Println("Migrated", fullpath)
 	}
 
 	return nil

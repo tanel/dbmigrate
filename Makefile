@@ -1,3 +1,4 @@
+export GOPATH=$(shell pwd)
 
 default: fmt build test
 
