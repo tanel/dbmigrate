@@ -40,6 +40,7 @@ func (cassandra *CassandraDatabase) CreateMigrationsTable() error {
 			return err
 		}
 	}
+	fmt.Println("Created migrations table")
 	return nil
 }
 
@@ -157,10 +158,11 @@ func ApplyMigrations(database Database, migrationsFolder string) error {
 		if err != nil {
 			return err
 		}
+		fullpath := filepath.Join(migrationsFolder, filename)
 		if migrated {
+			fmt.Println("Already migrated", fullpath)
 			continue
 		}
-		fullpath := filepath.Join(migrationsFolder, filename)
 		b, err := ioutil.ReadFile(fullpath)
 		if err != nil {
 			return err
