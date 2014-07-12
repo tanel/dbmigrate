@@ -167,6 +167,7 @@ func ApplyMigrations(database Database, migrationsFolder string) error {
 		}
 		migration := string(b)
 		if len(migration) == 0 {
+			fmt.Println("Skipping empty file", fullpath)
 			continue // empty file
 		}
 		err = database.Migrate(filename, migration)
