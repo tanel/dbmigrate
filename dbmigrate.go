@@ -82,7 +82,7 @@ type PostgresDatabase struct {
 }
 
 func (postgres *PostgresDatabase) CreateMigrationsTable() error {
-	_, err := postgres.Exec(`
+	_, err := postgres.database.Exec(`
 		CREATE TABLE IF NOT EXISTS migrations (
 			id serial, 
 			name text NOT NULL, 
