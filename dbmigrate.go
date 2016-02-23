@@ -82,9 +82,13 @@ type PostgresDatabase struct {
 }
 
 func (postgres *PostgresDatabase) CreateMigrationsTable() error {
-	_, err := postgres.database.Exec(`
-		create table if not exists migrations(id serial, name text not null, created_at timestamp with time zone not null)
-	`)
+	_, err := postgres.Exec(`
+		CREATE TABLE IF NOT EXISTS migrations (
+			id serial, 
+			name text NOT NULL, 
+			created_at timestamp with time zone NOT NULL,
+			CONSTRAINT "PK_migrations_id" PRIMARY KEY (id)
+	);`)
 	if err != nil {
 		return err
 	}
