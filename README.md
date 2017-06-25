@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/tanel/dbmigrate.svg?branch=master)](https://travis-ci.org/tanel/dbmigrate)
 
+There is a much better tool available now, check out [github.com/wallester/migrate](https://github.com/wallester/migrate)
+
 Supported databases
 -------------------
 * PostgreSQL
